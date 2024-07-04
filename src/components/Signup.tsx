@@ -16,7 +16,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -55,7 +55,7 @@ const Signup = () => {
 
       await schema.validate(formData, { abortEarly: false });
       await SignupMutate(formData);
-    } catch (error) {
+    } catch (error: any) {
       const newErrors = {};
       if (error?.inner) {
         error.inner.forEach((err) => {
@@ -63,8 +63,6 @@ const Signup = () => {
         });
 
         setErrors(newErrors);
-      } else {
-        setErrors({ api: error.message });
       }
     }
   };

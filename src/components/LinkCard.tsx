@@ -71,7 +71,7 @@ const LinkCard = ({ url, refetchUrls, refetchClicks }) => {
         <Button variant="ghost" onClick={downloadImage}>
           <Download />
         </Button>
-        <Button variant="ghost" onClick={() => handleDelete(url._id)} disable={isPending}>
+        <Button variant="ghost" onClick={() => handleDelete(url._id)} disabled={isPending}>
           {isPending ? <BeatLoader size={5} color="white" /> : <Trash />}
         </Button>
       </div>

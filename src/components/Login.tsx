@@ -19,7 +19,7 @@ import { setUserLogin } from '@/store/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
 const Login = () => {
-  const [error, setError] = useState([]);
+  const [error, setError] = useState<any>([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
@@ -59,7 +59,7 @@ const Login = () => {
       await schema.validate(formData, { abortEarly: false });
       //then we call the api
       await loginMutate(formData);
-    } catch (e) {
+    } catch (e: any) {
       const newError = {};
 
       e?.inner?.forEach((err) => {

@@ -17,12 +17,12 @@ const LinkPage = () => {
   const { userDetails } = useSelector((state: RootState) => state.auth);
   const { isPending, data: urlData } = useQuery({
     queryKey: ['linkDataforLinkPage'],
-    queryFn: () => fetchLinkData(id, userDetails._id),
+    queryFn: () => fetchLinkData(id as string, userDetails._id),
   });
 
   const { isPending: isPendingClicks, data: clicksData } = useQuery({
     queryKey: ['linksClicksData'],
-    queryFn: () => fetchClicksForUrl(id),
+    queryFn: () => fetchClicksForUrl(id as string),
   });
 
   console.log('aim url data', urlData);
@@ -34,8 +34,8 @@ const LinkPage = () => {
       : urlData?.data.data.short_url;
   }
   const downloadImage = () => {
-    const imageUrl = url?.qrCode;
-    const fileName = url?.title; // Desired file name for the downloaded image
+    const imageUrl = urlData?.data.data?.qrCode;
+    const fileName = urlData?.data.data?.title; // Desired file name for the downloaded image
 
     // Create an anchor element
     const anchor = document.createElement('a');
@@ -101,7 +101,7 @@ const LinkPage = () => {
             <Button
               variant="ghost"
               onClick={() => handleDelete(urlData?.data.data._id)}
-              disable={isPendingDelete}>
+              disabled={isPendingDelete}>
               {isPending ? <BeatLoader size={5} color="white" /> : <Trash />}
             </Button>
           </div>

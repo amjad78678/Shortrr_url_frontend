@@ -10,16 +10,11 @@ const RedirectLinkPage = () => {
   const { id } = useParams();
   const { status, data: longUrl } = useQuery({
     queryKey: ['gettingLongUrl'],
-    queryFn: () => fetchLongUrl(id),
+    queryFn: () => fetchLongUrl(id as string),
   });
 
   const { isPending, mutate: storeClicksMutation } = useMutation({
     mutationFn: storeClicks,
-    onSuccess: (res) => {
-      if (res) {
-        console.log(res.data);
-      }
-    },
   });
 
   console.log(longUrl);

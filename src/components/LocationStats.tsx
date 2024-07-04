@@ -1,7 +1,7 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function LocationStats({ stats = [] }) {
-  const cityCount = stats.reduce((acc, item) => {
+  const cityCount = stats.reduce((acc, item: any) => {
     if (acc[item.city]) {
       acc[item.city] += 1;
     } else {

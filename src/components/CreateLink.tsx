@@ -25,10 +25,10 @@ const CreateLink = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const { userDetails } = useSelector((state: RootState) => state.auth);
 
-  const ref = useRef(null);
+  const ref = useRef<any>(null);
   const navigate = useNavigate();
   const longLink = searchParams.get('createNew');
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<any>({});
   const { isPending, mutate: createLinkMutate } = useMutation({
     mutationFn: createLink,
     onSuccess: (res) => {
@@ -62,7 +62,7 @@ const CreateLink = () => {
     setErrors([]);
     try {
       await schema.validate(formValues, { abortEarly: false });
-      const canvas = ref.current.canvasRef.current;
+      const canvas: any = ref?.current?.canvasRef.current;
       const blob: File = await new Promise((resolve) => canvas.toBlob(resolve));
       const shortUrl = Math.random().toString(36).substring(2, 6);
 
@@ -79,7 +79,7 @@ const CreateLink = () => {
       formData.append('shortUrl', shortUrl);
 
       createLinkMutate(formData);
-    } catch (e) {
+    } catch (e: any) {
       const newErrors = {};
       e?.inner?.forEach((err) => {
         newErrors[err.path] = err.message;
