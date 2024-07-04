@@ -18,7 +18,7 @@ import { setUserLogout } from '@/store/slices/authSlice';
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { uLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { uLoggedIn, userDetails } = useSelector((state: RootState) => state.auth);
   const handleLogout = () => {
     dispatch(setUserLogout());
     navigate('/auth');
@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <nav className="relative py-4 flex justify-between items-center">
       <Link to={'/'}>
-        <img className="h-20" src="./logo1.png" />
+        <img className="h-20" src="/logo.png" />
       </Link>
       <div>
         {uLoggedIn ? (
@@ -38,12 +38,14 @@ const Header = () => {
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Amjad Ali</DropdownMenuLabel>
+              <DropdownMenuLabel>{userDetails.name}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <LinkIcon className="mr-2 h-4 w-4" />
-                <span>My Links</span>
-              </DropdownMenuItem>
+              <Link to={'/dashboard'}>
+                <DropdownMenuItem>
+                  <LinkIcon className="mr-2 h-4 w-4" />
+                  <span>My Links</span>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem onClick={handleLogout} className="text-red-500">
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Logout</span>

@@ -1,10 +1,12 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import AppLayout from './components/AppLayout';
 import LandingPage from './pages/LandingPage';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/DashboardPage';
 import AuthPage from './pages/AuthPage';
 import LinkPage from './pages/LinkPage';
 import ProtectedPage from './pages/ProtectedPage';
+import DashboardPage from './pages/DashboardPage';
+import RedirectLinkPage from './pages/RedirectLinkPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,11 +26,15 @@ function App() {
           children: [
             {
               path: '/dashboard',
-              element: <Dashboard />,
+              element: <DashboardPage />,
             },
             {
               path: '/link/:id',
               element: <LinkPage />,
+            },
+            {
+              path: '/:id',
+              element: <RedirectLinkPage />,
             },
           ],
         },

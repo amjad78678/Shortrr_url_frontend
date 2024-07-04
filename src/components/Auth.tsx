@@ -19,7 +19,7 @@ const Auth = () => {
   }, [uLoggedIn]);
 
   return (
-    <div className="mt-36 flex flex-col items-center gap-5 ">
+    <div className="my-34 flex flex-col items-center gap-5 ">
       <h1 className="text-4xl font-bold">
         {searchParams.get('createNew') ? 'Hold up! Lets login first' : 'Login / Signup'}
       </h1>
