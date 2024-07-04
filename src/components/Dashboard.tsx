@@ -15,7 +15,11 @@ const Dashboard = ({ urls, refetch, isPending }) => {
     return url.title.toLowerCase().includes(search.toLowerCase());
   });
 
-  const { isPending: isPendingClicks, data: clicksData, refetch: refetchClicks } = useQuery({
+  const {
+    isPending: isPendingClicks,
+    data: clicksData,
+    refetch: refetchClicks,
+  } = useQuery({
     queryKey: ['linksClicksDataInDashboard'],
     queryFn: fetchTotalClicks,
   });
@@ -27,8 +31,8 @@ const Dashboard = ({ urls, refetch, isPending }) => {
   return (
     <div className="flex flex-col gap-8">
       {(isPendingClicks || isPending) && <BarLoader width={'100%'} color="#36d7b7" />}
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Card>
+      <div className="grid sm:grid-cols-12 gap-4">
+        <Card className="col-span-8">
           <CardHeader>
             <CardTitle>Links Created</CardTitle>
           </CardHeader>
@@ -36,9 +40,9 @@ const Dashboard = ({ urls, refetch, isPending }) => {
             <p>{urls?.data.data.length}</p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Total Clicks</CardTitle>
+            <CardTitle>Shortrr Clicks (Global) </CardTitle>
           </CardHeader>
           <CardContent>
             <p>{clicksData?.data.data}</p>
@@ -61,7 +65,9 @@ const Dashboard = ({ urls, refetch, isPending }) => {
         <Filter className="absolute top-2 right-2" />
       </div>
       {Array.isArray(filteredUrls) ? (
-        filteredUrls.map((url) => <LinkCard key={url._id} url={url} refetchUrls={refetch} refetchClicks={refetchClicks} />)
+        filteredUrls.map((url) => (
+          <LinkCard key={url._id} url={url} refetchUrls={refetch} refetchClicks={refetchClicks} />
+        ))
       ) : (
         <p>No URLs found</p>
       )}

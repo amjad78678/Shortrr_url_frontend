@@ -137,7 +137,7 @@ export const fetchClicksForUrl = async (urlId: string) => {
 };
 export const fetchTotalClicks = async () => {
   try {
-    const response = await Api.get(`/fetch_total_clicks`);
+    const response = await Api.get(`/fetch_total_clicks}`);
     return response;
   } catch (error) {
     const err: Error = error as Error;
