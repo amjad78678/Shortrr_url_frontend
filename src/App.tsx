@@ -22,6 +22,10 @@ function App() {
           element: <LandingPage />,
         },
         {
+          path: '/:id',
+          element: <RedirectLinkPage />,
+        },
+        {
           element: <ProtectedPage />,
           children: [
             {
@@ -31,10 +35,6 @@ function App() {
             {
               path: '/link/:id',
               element: <LinkPage />,
-            },
-            {
-              path: '/:id',
-              element: <RedirectLinkPage />,
             },
           ],
         },
