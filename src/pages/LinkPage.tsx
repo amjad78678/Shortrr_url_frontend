@@ -98,12 +98,12 @@ const LinkPage = () => {
             <Button variant="ghost" onClick={downloadImage}>
               <Download />
             </Button>
-            <Button
+            {/* <Button
               variant="ghost"
               onClick={() => handleDelete(urlData?.data.data._id)}
               disabled={isPendingDelete}>
               {isPending ? <BeatLoader size={5} color="white" /> : <Trash />}
-            </Button>
+            </Button> */}
           </div>
           <img
             className="w-full self-center sm:self-center ring ring-blue-500 p-1 object-contain"
