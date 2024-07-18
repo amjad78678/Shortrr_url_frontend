@@ -1,12 +1,20 @@
-import Landing from '@/components/Landing'
-import React from 'react'
+import { CheckingServer } from '@/api/server';
+import Landing from '@/components/Landing';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 
 const LandingPage = () => {
+  const { isLoading, data } = useQuery({
+    queryKey: ['checking_server_api'],
+    queryFn: CheckingServer,
+  });
+
   return (
     <div>
-      <Landing/>
+      <Landing />
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

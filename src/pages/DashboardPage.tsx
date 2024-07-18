@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
+import Loader from '@/components/Loader';
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <div role="alert">
@@ -33,7 +34,7 @@ const DashboardPage = () => {
   }, [location]);
 
   return isPending || !urls ? (
-    <h1>Loading...</h1>
+    <Loader/>
   ) : (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <Dashboard urls={urls} refetch={refetch} isPending={isPending} />

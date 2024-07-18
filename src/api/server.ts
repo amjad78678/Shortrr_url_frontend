@@ -144,3 +144,13 @@ export const fetchTotalClicks = async () => {
     return errorHandle(err);
   }
 };
+export const CheckingServer = async () => {
+  try {
+    const response = await Api.get(`/`);
+    return response;
+  } catch (error) {
+    const err: Error = error as Error;
+    return errorHandle(err);
+  }
+};
+
