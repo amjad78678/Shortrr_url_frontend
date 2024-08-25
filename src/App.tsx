@@ -9,20 +9,17 @@ import DashboardPage from './pages/DashboardPage';
 import RedirectLinkPage from './pages/RedirectLinkPage';
 
 function App() {
- 
-  
-  
   const router = createBrowserRouter([
     {
       element: <AppLayout />,
       children: [
         {
-          path: '/auth',
-          element: <AuthPage />,
-        },
-        {
           path: '/',
           element: <LandingPage />,
+        },
+        {
+          path: '/auth',
+          element: <AuthPage />,
         },
         {
           path: '/:id',
